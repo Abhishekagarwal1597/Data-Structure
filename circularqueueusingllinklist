@@ -1,0 +1,119 @@
+#include<stdio.h>
+#define SIZE 5
+void insert();
+void del();
+void display();
+
+int data,arr[SIZE];
+int r=-1,f=-1;
+
+int main()
+{ int choice;
+while(1)
+{
+printf("1.to insert element in queue\n 2.to delete an element in queue\n 3.to dispay the queue\n 4.to quit");
+scanf("\n%d",&choice);
+switch (choice)
+{ case 1:
+
+	insert();
+	break;
+case 2:
+       del();
+       break;
+case 3:
+       display();
+       break;
+default:
+       printf("invalid input");
+       break;
+
+case 4:
+       return 0;
+}
+}
+return 0;
+}
+
+void insert ()
+{ if((r==SIZE-1 && f==0)||(r+1==f))
+	 { printf("queue is full\n");
+		 //return 0;
+	 }
+if(r==SIZE-1&& f!=0)
+{ r=0;
+}
+else
+{  r=r+1;
+}
+printf("enter the elemnt in queue");
+       scanf("\n%d",&data);
+arr[r]=data;
+
+ if(f==-1)
+ f=0;
+}
+
+void del()
+{ if(f==-1)
+	{ printf("queue is empty");
+	// return 0;
+	}
+int temp=arr[f];
+arr[f]=0;
+
+if(f==r)
+{ f=-1;
+  r=-1;
+}
+else if(f==SIZE-1)
+{f=0;
+}
+else
+{f=f+1;
+}
+}
+
+void display()
+{ if(f == -1)
+    { printf("\nCircular Queue is Empty!!!\n");
+    }
+else
+{ printf("queue element\n");
+if(f<=r)
+{ for(int i=f;i<=r;i++)
+{ printf("%d\t",arr[i]);
+}
+printf("\n");
+}
+else
+{ for(int j=0;j<=r;j++)
+{ printf("%d\t",arr[j]);
+}
+for(int z=f;z<=(SIZE-1);z++)
+{ printf("%d\t",arr[z]);
+}
+}
+}
+}
+/*void display()
+{
+   if(f == -1)
+      printf("\nCircular Queue is Empty!!!\n");
+   else{
+      int i = f;
+      printf("\nCircular Queue Elements are : \n");
+      if(f <= r){
+	 while(i <= r)
+	    printf("%d\t",arr[i++]);
+      }
+      else{
+	 while(i <= SIZE - 1)
+	    printf("%d\t", arr[i++]);
+	 i = 0;
+	 while(i <= r)
+	    printf("%d\t",arr[i++]);
+      }
+   }
+}
+*/
